@@ -45,6 +45,12 @@ public protocol ActiveLabelDelegate: class {
     @IBInspectable public var mentionFont: UIFont? {
         didSet { updateTextStorage(parseText: false) }
     }
+    @IBInspectable public var URLFontKerning: Float? {
+        didSet { updateTextStorage(parseText: false) }
+    }
+    @IBInspectable public var mentionFontKerning: Float? {
+        didSet { updateTextStorage(parseText: false) }
+    }
     
     // MARK: - public methods
     public func handleMentionTap(handler: (String) -> ()) {
@@ -258,11 +264,13 @@ public protocol ActiveLabelDelegate: class {
             case .Mention:
                 attributes[NSForegroundColorAttributeName] = mentionColor
                 attributes[NSFontAttributeName] = mentionFont ?? font
-                
+                attributes[NSKernAttributeName] = mentionFontKerning ?? 1
+
             case .Hashtag: attributes[NSForegroundColorAttributeName] = hashtagColor
             case .URL:
                 attributes[NSForegroundColorAttributeName] = URLColor
                 attributes[NSFontAttributeName] = URLFont ?? font
+                attributes[NSKernAttributeName] = URLFontKerning ?? 1
                 
             case .None: ()
             }
@@ -322,12 +330,14 @@ public protocol ActiveLabelDelegate: class {
             case .Mention(_):
                 attributes[NSForegroundColorAttributeName] = mentionColor
                 attributes[NSFontAttributeName] = mentionFont ?? font
-                
+                attributes[NSKernAttributeName] = mentionFontKerning ?? 1
+
             case .Hashtag(_): attributes[NSForegroundColorAttributeName] = hashtagColor
             case .URL(_):
                 attributes[NSForegroundColorAttributeName] = URLColor
                 attributes[NSFontAttributeName] = URLFont ?? font
-                
+                attributes[NSKernAttributeName] = URLFontKerning ?? 1
+
             case .None: ()
             }
         } else {
@@ -335,11 +345,14 @@ public protocol ActiveLabelDelegate: class {
             case .Mention(_):
                 attributes[NSForegroundColorAttributeName] = mentionSelectedColor ?? mentionColor
                 attributes[NSFontAttributeName] = mentionFont ?? font
-                
+                attributes[NSKernAttributeName] = mentionFontKerning ?? 1
+
             case .Hashtag(_): attributes[NSForegroundColorAttributeName] = hashtagSelectedColor ?? hashtagColor
             case .URL(_):
                 attributes[NSForegroundColorAttributeName] = URLSelectedColor ?? URLColor
                 attributes[NSFontAttributeName] = URLFont ?? font
+                attributes[NSKernAttributeName] = URLFontKerning ?? 1
+
             case .None: ()
             }
         }

@@ -45,10 +45,10 @@ public protocol ActiveLabelDelegate: class {
     @IBInspectable public var mentionFont: UIFont? {
         didSet { updateTextStorage(parseText: false) }
     }
-    @IBInspectable public var URLFontKerning: Float? {
+    @IBInspectable public var URLFontKerning: Float = 0 {
         didSet { updateTextStorage(parseText: false) }
     }
-    @IBInspectable public var mentionFontKerning: Float? {
+    @IBInspectable public var mentionFontKerning: Float = 0 {
         didSet { updateTextStorage(parseText: false) }
     }
     
@@ -264,13 +264,13 @@ public protocol ActiveLabelDelegate: class {
             case .Mention:
                 attributes[NSForegroundColorAttributeName] = mentionColor
                 attributes[NSFontAttributeName] = mentionFont ?? font
-                attributes[NSKernAttributeName] = mentionFontKerning ?? 1
+                attributes[NSKernAttributeName] = mentionFontKerning
 
             case .Hashtag: attributes[NSForegroundColorAttributeName] = hashtagColor
             case .URL:
                 attributes[NSForegroundColorAttributeName] = URLColor
                 attributes[NSFontAttributeName] = URLFont ?? font
-                attributes[NSKernAttributeName] = URLFontKerning ?? 1
+                attributes[NSKernAttributeName] = URLFontKerning
                 
             case .None: ()
             }
@@ -330,13 +330,13 @@ public protocol ActiveLabelDelegate: class {
             case .Mention(_):
                 attributes[NSForegroundColorAttributeName] = mentionColor
                 attributes[NSFontAttributeName] = mentionFont ?? font
-                attributes[NSKernAttributeName] = mentionFontKerning ?? 1
+                attributes[NSKernAttributeName] = mentionFontKerning
 
             case .Hashtag(_): attributes[NSForegroundColorAttributeName] = hashtagColor
             case .URL(_):
                 attributes[NSForegroundColorAttributeName] = URLColor
                 attributes[NSFontAttributeName] = URLFont ?? font
-                attributes[NSKernAttributeName] = URLFontKerning ?? 1
+                attributes[NSKernAttributeName] = URLFontKerning
 
             case .None: ()
             }
@@ -345,13 +345,13 @@ public protocol ActiveLabelDelegate: class {
             case .Mention(_):
                 attributes[NSForegroundColorAttributeName] = mentionSelectedColor ?? mentionColor
                 attributes[NSFontAttributeName] = mentionFont ?? font
-                attributes[NSKernAttributeName] = mentionFontKerning ?? 1
+                attributes[NSKernAttributeName] = mentionFontKerning
 
             case .Hashtag(_): attributes[NSForegroundColorAttributeName] = hashtagSelectedColor ?? hashtagColor
             case .URL(_):
                 attributes[NSForegroundColorAttributeName] = URLSelectedColor ?? URLColor
                 attributes[NSFontAttributeName] = URLFont ?? font
-                attributes[NSKernAttributeName] = URLFontKerning ?? 1
+                attributes[NSKernAttributeName] = URLFontKerning
 
             case .None: ()
             }
